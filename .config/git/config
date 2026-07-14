@@ -1,0 +1,10 @@
+[include]
+  path = ~/.config/git/config.local
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = input
+[commit]
+	gpgsign = true
+[alias]
+  graph = log --graph --oneline --decorate --all

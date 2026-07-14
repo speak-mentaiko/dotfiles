@@ -19,15 +19,4 @@
     │   ├── lazy.lua
     │   └── options.lua
     └── plugins
-        ├── blink_cmp.lua
-        ├── bufferline.lua
-        ├── catppuccin.lua
-        ├── lualine.lua
-        ├── mason.lua
-        ├── neo-tree.lua
-        ├── nvim-autopairs.lua
-        ├── nvim-treesitter.lua
-        ├── nvim-ts-autotag.lua
-        ├── snacks.lua
-        └── vim-endwise.lua
 ```
