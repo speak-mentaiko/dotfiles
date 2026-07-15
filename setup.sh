@@ -23,6 +23,7 @@ DOTFILES_DIR="$HOME/dotfiles"
 bash "$DOTFILES_DIR/scripts/link.sh"
 bash "$DOTFILES_DIR/scripts/git.sh"
 bash "$DOTFILES_DIR/scripts/mise.sh"
+bash "$DOTFILES_DIR/scripts/nvim.sh"
 
 echo "========================================="
 echo "Setup completed successfully!"
