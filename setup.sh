@@ -3,45 +3,26 @@
 # エラー発生時や未定義変数参照時にスクリプトを終了させる
 set -euo pipefail
 
+echo "========================================="
+echo "システムセットアップを開始します"
+echo "管理者権限が必要です。パスワードを入力してください。"
+# ここで一度だけパスワードを聞く
+sudo -v
+
+# スクリプト実行中、バックグラウンドで60秒ごとにsudoの有効期限を延長し続ける魔法のコマンド
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+echo "========================================="
+
+# システムの事前アップデート (以前のスクリプトから移植)
+echo "Updating apt repositories..."
+sudo apt update && sudo apt upgrade -y
+
 DOTFILES_DIR="$HOME/dotfiles"
 
-echo "========================================="
-# 1. ディレクトリの準備とシンボリックリンクの作成
-echo "1. Creating symbolic links..."
-mkdir -p "$HOME/.config"
-
-# 既存のファイル/フォルダがある場合はバックアップを取るか削除して上書き
-ln -snf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
-ln -snf "$DOTFILES_DIR/mise" "$HOME/.config/mise"
-ln -snf "$DOTFILES_DIR/bashrc" "$HOME/.bashrc"
-
-echo "Symbolic links created successfully."
-echo "========================================="
-
-# 2. mise 自体のインストール
-echo "2. Checking mise installation..."
-if ! command -v mise &> /dev/null; then
-    echo "mise is not found. Installing mise..."
-    curl https://mise.jdx.dev/install.sh | sh
-
-    # このスクリプト内だけで一時的に mise コマンドを通す
-    export PATH="$HOME/.local/share/mise/bin:$PATH"
-    eval "$($HOME/.local/share/mise/bin/mise activate bash)"
-else
-    echo "mise is already installed."
-fi
-echo "========================================="
-
-# 3. mise/config.toml に基づくツールのインストール（Neovim, Nodeなど）
-echo "3. Installing tools via mise (Neovim, etc.)..."
-if command -v mise &> /dev/null; then
-    # config.toml に記載されたツールをグローバルとして一括インストール
-    mise install --global
-    echo "Tools installed successfully."
-else
-    echo "Error: mise activation failed. Skipping tool installation."
-    exit 1
-fi
+# 分割したスクリプトの呼び出し
+bash "$DOTFILES_DIR/scripts/link.sh"
+bash "$DOTFILES_DIR/scripts/git.sh"
+bash "$DOTFILES_DIR/scripts/mise.sh"
 
 echo "========================================="
 echo "Setup completed successfully!"
