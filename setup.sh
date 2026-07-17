@@ -24,6 +24,7 @@ bash "$DOTFILES_DIR/scripts/link.sh"
 bash "$DOTFILES_DIR/scripts/git.sh"
 bash "$DOTFILES_DIR/scripts/mise.sh"
 bash "$DOTFILES_DIR/scripts/nvim.sh"
+bash "$DOTFILES_DIR/scripts/docker.sh"
 
 echo "========================================="
 echo "Setup completed successfully!"

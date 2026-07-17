@@ -17,7 +17,7 @@ if [ ! -f "$GIT_LOCAL_CONFIG" ]; then
     sudo apt update && sudo apt install -y gnupg
   fi
 
-  if ! gpg --list-secret-keys --keyid-format=long "$git_email" >/dev/null 2>&1; then[cite: 3]
+  if ! gpg --list-secret-keys --keyid-format=long "$git_email" >/dev/null 2>&1; then
     echo "Generating GPG key..."
     gpg --batch --gen-key <<EOF
 %no-protection
@@ -31,16 +31,16 @@ Expire-Date: 0
 EOF
   fi
 
-  # GPGキーIDの抽出[cite: 3]
+  # GPGキーIDの抽出
   KEY_ID=$(gpg --list-secret-keys --keyid-format=long "$git_email" | grep 'sec' | tail -n1 | awk '{print $2}' | cut -d'/' -f2)
 
-  # SSHの生成[cite: 3]
+  # SSHの生成
   if [ ! -f "$SSH_KEY" ]; then
     echo "Generating SSH key..."
-    mkdir -p ~/.ssh[cite: 3]
-    ssh-keygen -t ed25519 -C "$git_email" -f "$SSH_KEY" -N ""[cite: 3]
-    eval "$(ssh-agent -s)"[cite: 3]
-    ssh-add "$SSH_KEY"[cite: 3]
+    mkdir -p ~/.ssh
+    ssh-keygen -t ed25519 -C "$git_email" -f "$SSH_KEY" -N ""
+    eval "$(ssh-agent -s)"
+    ssh-add "$SSH_KEY"
   fi
 
   # config.local への設定書き出し
@@ -55,11 +55,11 @@ EOF
 EOF
   echo "Gitローカル設定 ($GIT_LOCAL_CONFIG) を作成しました。"
 
-  # GitHub登録用の公開鍵を表示[cite: 3]
+  # GitHub登録用の公開鍵を表示
   echo "=== GitHubに登録する公開鍵 GPG ==="
-  gpg --armor --export "$KEY_ID"[cite: 3]
+  gpg --armor --export "$KEY_ID"
   echo "=== GitHubに登録する公開鍵 SSH ==="
-  cat "$SSH_KEY.pub"[cite: 3]
+  cat "$SSH_KEY.pub"
 else
   echo "Gitローカル設定は既に存在するためスキップします。"
 fi
