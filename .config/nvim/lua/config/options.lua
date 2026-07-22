@@ -42,7 +42,7 @@ vim.opt.listchars = {
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = function ()
-    vim.api.nvim_set_hl(0, "ZenkakuSpace", { link = "Todo" })
+    vim.api.nvim_set_hl(0, "ZenkakuSpace", { link = "Search" })
   end,
 })
 vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
