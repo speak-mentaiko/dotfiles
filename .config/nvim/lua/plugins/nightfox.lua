@@ -7,6 +7,6 @@ return {
       options = {}
     })
 
-    vim.cmd("colorscheme nightfox")
+    vim.cmd("colorscheme duskfox")
   end
 }
