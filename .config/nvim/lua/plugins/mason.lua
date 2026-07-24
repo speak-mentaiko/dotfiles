@@ -26,8 +26,10 @@ return {
 
     local capabilities = require("blink.cmp").get_lsp_capabilities()
     local opts = {
-        capabilities = capabilities
-      }
+      capabilities = capabilities
+    }
+
+    local should_enable = true
 
     for _, server in ipairs(servers) do
       if server == "solargraph" then
@@ -39,8 +41,14 @@ return {
         }
       end
 
-      vim.lsp.config(server, opts)
-      vim.lsp.enable(server)
+      if vim.fn.executable("solargraph") ~= 1 then
+        should_enable = false
+      end
+
+      if should_enable then
+        vim.lsp.config(server, opts)
+        vim.lsp.enable(server)
+      end
     end
   end,
 }
