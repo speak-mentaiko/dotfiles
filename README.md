@@ -7,6 +7,8 @@
   - ruby
   - neovim
 
+- oh-my-posh
+
 - neovim
 ```
 .config/nvim/

@@ -13,6 +13,7 @@ mkdir -p "$HOME/.config"
 ln -snf "$DOTFILES_DIR/.config/nvim" "$HOME/.config/nvim"
 ln -snf "$DOTFILES_DIR/.config/mise" "$HOME/.config/mise"
 ln -snf "$DOTFILES_DIR/.config/git" "$HOME/.config/git"
+ln -snf "$DOTFILES_DIR/.config/oh-my-posh" "$HOME/.config/oh-my-posh"
 ln -snf "$DOTFILES_DIR/.bashrc" "$HOME/.bashrc"
 
 echo "Symbolic links created successfully."

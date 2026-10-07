@@ -124,3 +124,9 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 # mise
 eval "$($HOME/.local/bin/mise activate bash)"
+
+# oh-my-posh
+export PATH="$HOME/.local/bin:$PATH"
+if command -v oh-my-posh >/dev/null 2>&1 && [ -f "$HOME/.config/oh-my-posh/config.omp.json" ]; then
+  eval "$(oh-my-posh init bash --config "$HOME/.config/oh-my-posh/config.omp.json")"
+fi
