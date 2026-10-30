@@ -3,9 +3,9 @@
   "palette": {
         "os": "#ACB0BE",
         "closer": "p:os",
-        "pink": "#ea76cb",
-        "lavender": "#7287FD",
-        "blue":  "#1e66f5"
+        "pink": "#F4B8E4",
+        "lavender": "#BABBF1",
+        "blue":  "#8CAAEE"
   },
   "blocks": [
     {
